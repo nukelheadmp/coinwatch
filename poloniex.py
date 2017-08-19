@@ -3,6 +3,8 @@ Original code from https://pastebin.com/fbkheaRb
 
 Modified to work with Python 3.x
 
+I am not affiliated with Poloniex, use this code at your own risk.
+
 '''
 import urllib.request
 import json
