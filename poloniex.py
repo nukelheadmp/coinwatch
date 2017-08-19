@@ -1,3 +1,9 @@
+'''
+Original code from https://pastebin.com/fbkheaRb
+
+Modified to work with Python 3.x
+
+'''
 import urllib.request
 import json
 import time
