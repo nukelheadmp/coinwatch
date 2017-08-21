@@ -4,12 +4,13 @@ import gi
 gi.require_version('Gtk', '3.0')
 from gi.repository import Gtk
 
-#list of tuples for each pair containing the symbol, USD and BTC pairing
-pairs = []
-pairs.append(["BCH", "USDT_BCH", "BTC_BCH", 0])
-
 class guimain(Gtk.Window):
     
+    #list of tuples for each pair containing the symbol, USD and BTC pairing
+    pairs = []
+    pairs.append(["BCH", "USDT_BCH", "BTC_BCH", 0])
+    
+    delay = 5
     counter = 0
 
     def __init__(self):
@@ -52,8 +53,8 @@ class guimain(Gtk.Window):
         while 1:
             self.pair_liststore.clear()
             self.counter += 1
-            for pair in pairs:
+            for pair in self.pairs:
                 pair[3] = self.counter
                 self.pair_liststore.append(list(pair))
-            time.sleep(1)
+            time.sleep(self.delay)
         
