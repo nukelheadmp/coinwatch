@@ -11,12 +11,8 @@ import json
 import time
 import hmac, hashlib
 
-from urllib3.connectionpool import xrange
-
-
 def createTimeStamp(datestr, format="%Y-%m-%d %H:%M:%S"):
     return time.mktime(time.strptime(datestr, format))
-
 
 class poloniex:
     def __init__(self, APIKey, Secret):
