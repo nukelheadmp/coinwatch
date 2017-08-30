@@ -12,15 +12,10 @@ class guimain(Gtk.Window):
     pairs = []
     pairs.append(["BCH", "USDT_BCH", "BTC_BCH"])
     
-    values = {}
-
     delay = 5
     counter = 0
 
     def __init__(self):
-        for pair in self.pairs:
-            self.values[pair[0]] = {(pair[1], 0.0), (pair[2], 0.0)}
-
         self.exch = exchange()
         Gtk.Window.__init__(self, title="CoinWatch", default_height=300, default_width=600)
         self.set_border_width(10)
@@ -58,12 +53,17 @@ class guimain(Gtk.Window):
         thread.start()
 
     def update_list(self):
+        values = []
         while 1:
             self.pair_liststore.clear()
             self.counter += 1
+            results = self.exch.get_polo_tickers()
+            values = [("BCH", 0.0, 0.0), ("ETH", 1.1, 1.1)]
             for pair in self.pairs:
-                results = self.exch.get_polo_tickers()
-                self.values[pair[0]][pair[1]] = results[pair[1]["last"]]
-            self.pair_liststore.append(list(self.values))
+                #pprint.pprint(results[pair[1]]["last"])
+                #pprint.pprint(values[pair[0]][pair[1]])
+                #values.append()
+                self.pair_liststore.append(list([str(pair[0]), float(results[pair[1]]["last"]), float(results[pair[2]]["last"])]))
+            #pprint.pprint(values)
             time.sleep(self.delay)
         
